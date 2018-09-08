@@ -1,41 +1,76 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
+
+[Serializable]
+public class PaddleControls
+{
+	public string UpKey;
+
+	public string Downkey;
+}
 
 public class PlayerPaddle : MonoBehaviour {
 
+	/// <summary>
+	/// Speed for paddle movement
+	/// </summary>
+	[Tooltip("Speed for paddle movement")]
 	public float Speed;
 
-	public Vector3 StartPoint;
+	/// <summary>
+	/// Min point of movement
+	/// </summary>
+	[Tooltip("Min point of movement")]
+	public Vector3 MinPoint;
 
-	public Vector3 EndPoint;
+	/// <summary>
+	/// Max point of movement
+	/// </summary>
+	[Tooltip("Max point of movement")]
+	public Vector3 MaxPoint;
 
-	private float _t = 0.5f;
+	/// <summary>
+	/// T/Time value between min and max points
+	/// </summary>
+	[Tooltip("T/Time value between min and max points")]
+	public float TValue = 0.5f;
+
+	/// <summary>
+	/// Player who owns this
+	/// </summary>
+	[Tooltip("Player who owns this")]
+	public int OwningSlot = -1;
+
+	/// <summary>
+	/// Paddle controls
+	/// </summary>
+	[Tooltip("Paddle controls")]
+	public PaddleControls Controls; 
 
 	/// <summary>
 	/// Update is called every frame, if the MonoBehaviour is enabled.
 	/// </summary>
 	void Update()
 	{
-		float tDist = Speed / Vector3.Distance(EndPoint, StartPoint);
+		float tDist = Speed / Vector3.Distance(MaxPoint, MinPoint);
 		tDist *= Time.deltaTime;
 
-		if (Input.GetKey("w"))
+		if (Input.GetKey(Controls.UpKey))
 		{
-			_t += tDist;
+			TValue += tDist;
 
 			// max _t at 1
-			_t = _t > 1f ? 1f : _t;
+			TValue = TValue > 1f ? 1f : TValue;
 		}
 
-		else if (Input.GetKey("s"))
+		else if (Input.GetKey(Controls.Downkey))
 		{
-			_t -= tDist;
+			TValue -= tDist;
 
 			// min _t at 0
-			_t = _t < 0f ? 0f : _t;
+			TValue = TValue < 0f ? 0f : TValue;
 		}
 
-		transform.position = Vector3.Lerp(StartPoint, EndPoint, _t);
+		transform.position = Vector3.Lerp(MinPoint, MaxPoint, TValue);
 	}
 }
