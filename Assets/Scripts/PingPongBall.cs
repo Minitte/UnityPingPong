@@ -15,7 +15,7 @@ public class PingPongBall : MonoBehaviour {
 	/// </summary>
 	/// <returns></returns>
 	[Tooltip("Travel Velocity")]
-	public Vector3 Velocity = new Vector3(2, 0, 2);
+	public Vector3 Velocity;
 
 	/// <summary>
 	/// Rigidbody reference
@@ -28,7 +28,17 @@ public class PingPongBall : MonoBehaviour {
 	void Awake()
 	{
 		_rigidBody = GetComponent<Rigidbody>();
+
+		// random angle in degrees
+		float angle = new System.Random().Next(0, 360);
 		
+		// convert to rad
+		angle *= Mathf.Deg2Rad;
+
+		Velocity = Vector3.zero;
+		
+		Velocity.x = Mathf.Cos(angle);
+		Velocity.z = Mathf.Sin(angle);
 	}
 
 	/// <summary>
