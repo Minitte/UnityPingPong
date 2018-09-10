@@ -52,8 +52,8 @@ public class GameManager : MonoBehaviour {
 			{
 				PlayerPaddle paddle = paddleGO[pInfo.Slot].GetComponent<PlayerPaddle>();
 
-				// TODO add AI Componet / script to paddle
-				paddle.gameObject.AddComponent(typeof(PaddleAI));
+				// paddle.gameObject.AddComponent(typeof(PaddleAI));
+				paddle.gameObject.GetComponent<PaddleAI>().enabled = true;
 			}
 		}
 
