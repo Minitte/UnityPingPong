@@ -44,8 +44,8 @@ public class PlayerPaddle : MonoBehaviour {
 	/// <summary>
 	/// Paddle controls
 	/// </summary>
-	[Tooltip("Paddle controls")]
-	public PaddleControls Controls; 
+	//[Tooltip("Paddle controls")]
+	//public PaddleControls Controls; 
 
 	/// <summary>
 	/// Update is called every frame, if the MonoBehaviour is enabled.
@@ -55,17 +55,14 @@ public class PlayerPaddle : MonoBehaviour {
 		float tDist = Speed / Vector3.Distance(MaxPoint, MinPoint);
 		tDist *= Time.deltaTime;
 
-		if (Input.GetKey(Controls.UpKey))
+		float input = Input.GetAxis("PaddleAxis" + (OwningSlot + 1));
+
+		if (input != 0)
 		{
-			TValue += tDist;
+			TValue += tDist * input;
 
 			// max _t at 1
 			TValue = TValue > 1f ? 1f : TValue;
-		}
-
-		else if (Input.GetKey(Controls.Downkey))
-		{
-			TValue -= tDist;
 
 			// min _t at 0
 			TValue = TValue < 0f ? 0f : TValue;
