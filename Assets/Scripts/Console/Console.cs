@@ -24,6 +24,7 @@ public class Console : MonoBehaviour {
 		_cmds.Add("setscore", new SetScoreCommand());
 		_cmds.Add("background", new SetBackgroundCommand());
 		_cmds.Add("ai", new EnableAICommand());
+		_cmds.Add("clear", new ClearConsoleCommand());
 
 		// create help message
 		List<string> keyList = new List<string>(_cmds.Keys);
@@ -35,7 +36,7 @@ public class Console : MonoBehaviour {
 			_helpMessage += _cmds[key].HelpMessage + "\n";
 		}
 
-		_helpMessage = "----------------\n";
+		_helpMessage += "----------------\n";
 
 
 		// hide console by default

@@ -22,7 +22,7 @@ public class ConsoleInputField : MonoBehaviour {
 	void Update()
 	{
 		// focued, not empty and pressed enter/return
-		if (_input.isFocused && _input.text != "" && Input.GetKey(KeyCode.Return))
+		if (_input.text != "" && Input.GetKey(KeyCode.Return))
 		{
 			TargetConsole.ProcessCommand(_input.text);
 			
