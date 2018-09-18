@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -21,6 +22,10 @@ public class GameManager : MonoBehaviour {
 	public PlayerInfo[] PlayerList;
 
 	public GameObject BallPrefab;
+
+	public Text WinText;
+
+	public int[] Scores = new int[2];
 
 	/// <summary>
 	/// Awake is called when the script instance is being loaded.
@@ -65,13 +70,23 @@ public class GameManager : MonoBehaviour {
 
 	private void SpawnBallOnGoal(int scoringTeam)
 	{
-		SpawnBall();
+		Scores[scoringTeam]++;
+
+		if (Scores[scoringTeam] > 6)
+		{
+			WinText.text = "Player " + (scoringTeam + 1) + " wins!";
+			WinText.gameObject.SetActive(true);
+		}
+		else
+		{
+			SpawnBall();
+		}
 	}
 
 	/// <summary>
 	/// Spawns a ball and triggers GameEventManager.OnNewBall event
 	/// </summary>
-	public void SpawnBall()
+	private void SpawnBall()
 	{
 		// create first ball.
 		GameObject ballGO = GameObject.Instantiate(BallPrefab);

@@ -31,6 +31,10 @@ public class SetScoreCommand : ConsoleCommand
 
         scoreGO.GetComponent<Text>().text = score + "pt";
 
+        GameObject gmGO = GameObject.Find("Game Manager");
+
+        gmGO.GetComponent<GameManager>().Scores[player - 1] = score;
+
         return "Player " + player + "'s score set to " + score;
     }
 }
