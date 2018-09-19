@@ -15,11 +15,15 @@ public class Console : MonoBehaviour {
 
 	private string _helpMessage;
 
+	private ConsoleManualInput _cmi;
+
 	/// <summary>
 	/// Awake is called when the script instance is being loaded.
 	/// </summary>
 	void Awake()
 	{
+		_cmi = GetComponent<ConsoleManualInput>();
+
 		// register commands
 		_cmds.Add("setscore", new SetScoreCommand());
 		_cmds.Add("background", new SetBackgroundCommand());
@@ -36,11 +40,14 @@ public class Console : MonoBehaviour {
 			_helpMessage += _cmds[key].HelpMessage + "\n";
 		}
 
+		_helpMessage += "close\n";
+
 		_helpMessage += "----------------\n";
 
 
 		// hide console by default
 		ConsolePanel.SetActive(false);
+		_cmi.enabled = false;
 	}
 
 	/// <summary>
@@ -50,11 +57,13 @@ public class Console : MonoBehaviour {
 	{
 		if (!ConsoleInput.isFocused && Input.GetKeyDown(KeyCode.C))
 		{
-			ConsolePanel.SetActive(!ConsolePanel.activeSelf);
+			ConsolePanel.SetActive(true);
+			_cmi.enabled = true;
 		}
 		else if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			ConsolePanel.SetActive(false);
+			_cmi.enabled = false;
 		}
 	}
 
@@ -67,6 +76,12 @@ public class Console : MonoBehaviour {
 		if (cmd == "help")
 		{
 			ConsoleOutput.text += _helpMessage;
+
+			return;
+		}
+		else if (cmd == "close")
+		{
+			ConsolePanel.SetActive(false);
 
 			return;
 		}

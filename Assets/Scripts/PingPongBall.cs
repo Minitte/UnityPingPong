@@ -10,6 +10,8 @@ public class PingPongBall : MonoBehaviour {
 	[Tooltip("Speed up per sec")]
 	public float SpeedUp;
 
+	public float MaxSpeed;
+
 	/// <summary>
 	/// Travel velocity
 	/// </summary>
@@ -21,6 +23,8 @@ public class PingPongBall : MonoBehaviour {
 	/// Rigidbody reference
 	/// </summary>
 	private Rigidbody _rigidBody;
+
+	private float _sumSpeed;
 
 	/// <summary>
 	/// Awake is called when the script instance is being loaded.
@@ -46,12 +50,19 @@ public class PingPongBall : MonoBehaviour {
 	/// </summary>
 	void Update()
 	{
+
+		if (_sumSpeed < MaxSpeed)
+		{
+	
 		// speed up the ball
 		float scaledSpeedUp = SpeedUp * Time.deltaTime;
+
+		_sumSpeed += scaledSpeedUp;
 		
 		// increase velocity of x and z based on their sign
 		Velocity.x += Velocity.x < 0 ? -scaledSpeedUp : scaledSpeedUp;
 		Velocity.z += Velocity.z < 0 ? -scaledSpeedUp : scaledSpeedUp;
+		}
 
 		// set rb's velocity
 		_rigidBody.velocity = Velocity;

@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(InputField))]
 public class ConsoleInputField : MonoBehaviour {
@@ -17,10 +19,31 @@ public class ConsoleInputField : MonoBehaviour {
 	}
 
 	/// <summary>
+	/// This function is called when the object becomes enabled and active.
+	/// </summary>
+	void OnEnable()
+	{
+		// _input.Select();
+		// _input.ActivateInputField();
+	}
+
+	/// <summary>
 	/// Update is called every frame, if the MonoBehaviour is enabled.
 	/// </summary>
 	void Update()
 	{
+		// if (!_input.isFocused)
+		// {
+		// 	try
+		// 	{
+		// 		_input.ActivateInputField();
+		// 	}
+		// 	catch (Exception e)
+		// 	{
+		// 		ExceptionText.text = e.Message;
+		// 	}
+		// }
+
 		// focued, not empty and pressed enter/return
 		if (_input.text != "" && Input.GetKey(KeyCode.Return))
 		{
