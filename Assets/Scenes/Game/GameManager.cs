@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour {
 
 	public int[] Scores = new int[2];
 
-	private bool win;
+	private bool _win;
 
 	/// <summary>
 	/// Awake is called when the script instance is being loaded.
@@ -77,12 +77,12 @@ public class GameManager : MonoBehaviour {
 	/// </summary>
 	void Update()
 	{
-		if (win)
+		if (_win)
 		{
 			if (Input.GetAxis("P1Submit") != 0)
 			{
 				RestartGame();
-				win = false;
+				_win = false;
 			}
 		}
 	}
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour {
 
 		if (Scores[scoringTeam] > 6)
 		{
-			win = true;
+			_win = true;
 			WinText.text = "Player " + (scoringTeam + 1) + " wins!";
 			WinText.gameObject.SetActive(true);
 		}
@@ -124,6 +124,10 @@ public class GameManager : MonoBehaviour {
 		PlayerScoreTexts[0].IncScore(0);
 		PlayerScoreTexts[1].Score = -1;
 		PlayerScoreTexts[1].IncScore(1);
+
+		WinText.gameObject.SetActive(false);
+
+		SpawnBall();
 	}
 	
 }
