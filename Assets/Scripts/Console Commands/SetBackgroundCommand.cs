@@ -6,7 +6,7 @@ public class SetBackgroundCommand : ConsoleCommand
     
     public SetBackgroundCommand()
     {
-        _helpMessage = "SetBackground <colour>\nColours: Red, Blue, Green, Black, White";
+        _helpMessage = "background <colour>\nColours: Red, Blue, Green, Black, White";
     }
 
     public override string ProcessCommand(string[] args)
