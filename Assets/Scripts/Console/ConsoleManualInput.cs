@@ -101,7 +101,10 @@ public class ConsoleManualInput : MonoBehaviour {
 		{
 			string console = ConsoleInputField.text;
 
-			ConsoleInputField.text = console.Remove(console.Length - 1, 1);;
+			if (ConsoleInputField.text.Length > 0)
+			{
+				ConsoleInputField.text = console.Remove(console.Length - 1, 1);;
+			}
 		}
 
 	}

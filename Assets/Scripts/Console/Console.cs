@@ -58,7 +58,9 @@ public class Console : MonoBehaviour {
 		if (!ConsoleInput.isFocused && Input.GetKeyDown(KeyCode.C))
 		{
 			ConsolePanel.SetActive(true);
+			#if UNITY_PS4
 			_cmi.enabled = true;
+			#endif
 		}
 		else if (Input.GetKeyDown(KeyCode.Escape))
 		{

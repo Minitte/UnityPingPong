@@ -55,10 +55,10 @@ public class PlayerPaddle : MonoBehaviour {
 		float tDist = Speed / Vector3.Distance(MaxPoint, MinPoint);
 		tDist *= Time.deltaTime;
 			
-		float joy = Input.GetAxis("PaddleAxis" + (OwningSlot + 1));
-		float key = Input.GetAxis("PaddleKey" + (OwningSlot + 1));
+		float joy = Input.GetAxis("P" + (OwningSlot + 1) + "VertJoy");
+		float key = Input.GetAxis("P" + (OwningSlot + 1) + "VertKey");
 
-		float input = joy != 0 ? joy : key;
+		float input = key != 0 ? key : joy;
 
 		if (input != 0)
 		{

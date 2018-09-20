@@ -26,7 +26,7 @@ public class PlayerScoreText : MonoBehaviour {
 	/// 
 	/// </summary>
 	/// <param name="scoring"></param>
-	private void IncScore(int scoring)
+	public void IncScore(int scoring)
 	{
 		if (scoring == OwningSlot)
 		{

@@ -25,7 +25,11 @@ public class GameManager : MonoBehaviour {
 
 	public Text WinText;
 
+	public PlayerScoreText[] PlayerScoreTexts;
+
 	public int[] Scores = new int[2];
+
+	private bool win;
 
 	/// <summary>
 	/// Awake is called when the script instance is being loaded.
@@ -68,12 +72,28 @@ public class GameManager : MonoBehaviour {
 		SpawnBall();
 	}
 
+	/// <summary>
+	/// Update is called every frame, if the MonoBehaviour is enabled.
+	/// </summary>
+	void Update()
+	{
+		if (win)
+		{
+			if (Input.GetAxis("P1Submit") != 0)
+			{
+				RestartGame();
+				win = false;
+			}
+		}
+	}
+
 	private void SpawnBallOnGoal(int scoringTeam)
 	{
 		Scores[scoringTeam]++;
 
 		if (Scores[scoringTeam] > 6)
 		{
+			win = true;
 			WinText.text = "Player " + (scoringTeam + 1) + " wins!";
 			WinText.gameObject.SetActive(true);
 		}
@@ -86,13 +106,24 @@ public class GameManager : MonoBehaviour {
 	/// <summary>
 	/// Spawns a ball and triggers GameEventManager.OnNewBall event
 	/// </summary>
-	private void SpawnBall()
+	public void SpawnBall()
 	{
 		// create first ball.
 		GameObject ballGO = GameObject.Instantiate(BallPrefab);
 
 		// trigger event
 		EventMngr.BroadcastBallSpawnEvent(ballGO.GetComponent<PingPongBall>());
+	}
+
+	public void RestartGame()
+	{
+		Scores[0] = 0;
+		Scores[1] = 0;
+
+		PlayerScoreTexts[0].Score = -1;
+		PlayerScoreTexts[0].IncScore(0);
+		PlayerScoreTexts[1].Score = -1;
+		PlayerScoreTexts[1].IncScore(1);
 	}
 	
 }
