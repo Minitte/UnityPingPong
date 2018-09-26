@@ -5,16 +5,37 @@ using UnityEngine.UI;
 
 public class Console : MonoBehaviour {
 
+	/// <summary>
+	/// Console output Text
+	/// </summary>
 	public Text ConsoleOutput;
 
+	/// <summary>
+	/// Console input field 
+	/// </summary>
 	public InputField ConsoleInput;
 
+	/// <summary>
+	/// Entire console panel
+	/// </summary>
 	public GameObject ConsolePanel;
 
+	/// <summary>
+	/// List of commands
+	/// </summary>
+	/// <typeparam name="string">command name</typeparam>
+	/// <typeparam name="ConsoleCommand">command processor</typeparam>
+	/// <returns></returns>
 	private Dictionary<string, ConsoleCommand> _cmds = new Dictionary<string, ConsoleCommand>();
 
+	/// <summary>
+	/// Help message generated on awake
+	/// </summary>
 	private string _helpMessage;
 
+	/// <summary>
+	/// Manual input for PS4
+	/// </summary>
 	private ConsoleManualInput _cmi;
 
 	/// <summary>
@@ -58,6 +79,8 @@ public class Console : MonoBehaviour {
 		if (!ConsoleInput.isFocused && Input.GetKeyDown(KeyCode.C))
 		{
 			ConsolePanel.SetActive(true);
+
+			// Don't enable for non ps4
 			#if UNITY_PS4
 			_cmi.enabled = true;
 			#endif
@@ -69,6 +92,10 @@ public class Console : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Processes Commands
+	/// </summary>
+	/// <param name="command"></param>
 	public void ProcessCommand(string command)
 	{
 		string[] args = command.Split(' ');

@@ -4,10 +4,19 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Text))]
 public class PlayerScoreText : MonoBehaviour {
 
+	/// <summary>
+	/// Score
+	/// </summary>
 	public int Score;
 
+	/// <summary>
+	/// Owning player number or slot
+	/// </summary>
 	public int OwningSlot;
 
+	/// <summary>
+	/// Text component
+	/// </summary>
 	private Text _text;
 
 	/// <summary>
@@ -23,7 +32,7 @@ public class PlayerScoreText : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// 
+	/// Increments the score
 	/// </summary>
 	/// <param name="scoring"></param>
 	public void IncScore(int scoring)

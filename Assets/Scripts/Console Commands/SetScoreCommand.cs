@@ -15,7 +15,20 @@ public class SetScoreCommand : ConsoleCommand
         int player = -1;
         int score = 0;
 
-        if (args.Length != 3 || !int.TryParse(args[1], out player) || !int.TryParse(args[2], out score))
+        // 3 args
+        if (args.Length != 3)
+        {
+            return _helpMessage;
+        }
+
+        // Player number
+        if (!int.TryParse(args[1], out player))
+        {
+            return _helpMessage;
+        }
+
+        // score 
+        if (!int.TryParse(args[2], out score))
         {
             return _helpMessage;
         }

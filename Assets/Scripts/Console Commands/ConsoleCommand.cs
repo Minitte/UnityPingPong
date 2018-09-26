@@ -4,11 +4,18 @@ using UnityEngine.UI;
 public abstract class ConsoleCommand
 {
 
+    /// <summary>
+    /// Help message
+    /// </summary>
+    /// <value></value>
     public string HelpMessage
     {
         get { return _helpMessage; }
     }
 
+    /// <summary>
+    /// Help message
+    /// </summary>
     protected string _helpMessage;
 
     /// <summary>

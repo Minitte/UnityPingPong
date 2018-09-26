@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class ConsoleManualInput : MonoBehaviour {
 
+	/// <summary>
+	/// Target console input field to put characters in
+	/// </summary>
 	public InputField ConsoleInputField;
 
 	/// <summary>
@@ -109,6 +112,10 @@ public class ConsoleManualInput : MonoBehaviour {
 
 	}
 
+	/// <summary>
+	/// Takes the given KeyCode and puts it in the input field in it's string form
+	/// </summary>
+	/// <param name="key"></param>
 	public void PostKeyToConsole(KeyCode key)
 	{
 		if (Input.GetKeyDown(key))

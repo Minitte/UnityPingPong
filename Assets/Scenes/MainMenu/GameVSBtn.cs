@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameVSBtn : MonoBehaviour {
 
+    /// <summary>
+    /// Loads game scene
+    /// </summary>
 	public void BeginGame()
     {
         SceneManager.LoadScene("Game");

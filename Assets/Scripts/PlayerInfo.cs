@@ -35,6 +35,10 @@ public class PlayerInfo : MonoBehaviour {
 		Players.Add(this);
 	}
 
+	/// <summary>
+	/// Sets AI flag
+	/// </summary>
+	/// <param name="isAI"></param>
 	public void SetAI(bool isAI)
 	{
 		this.IsAI = isAI;

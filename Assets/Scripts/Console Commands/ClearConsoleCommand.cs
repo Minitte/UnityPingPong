@@ -11,6 +11,7 @@ public class ClearConsoleCommand : ConsoleCommand
 
     public override string ProcessCommand(string[] args)
     {
+        // no args
         if (args.Length != 1)
         {
             return _helpMessage;

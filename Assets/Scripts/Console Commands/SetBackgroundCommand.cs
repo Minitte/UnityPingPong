@@ -18,6 +18,7 @@ public class SetBackgroundCommand : ConsoleCommand
 
         string colorString = args[1].ToLower();
 
+        // Colour check
         if (colorString.Equals("red", StringComparison.InvariantCultureIgnoreCase))
         {
             Camera.main.backgroundColor = Color.red;

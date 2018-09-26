@@ -6,12 +6,21 @@ public class GameEventManager : MonoBehaviour {
 	
 	public delegate void BallEvent(PingPongBall ball);
 
+	/// <summary>
+	/// Event for when a new ball was created
+	/// </summary>
 	public static event BallEvent OnNewBall;
 
+	/// <summary>
+	/// Event for when a ball was removed
+	/// </summary>
 	public static event BallEvent OnRemoveBall;
 
 	public delegate void GoalEvent(int scoringTeam);
 
+	/// <summary>
+	/// Event for when goal was scored
+	/// </summary>
 	public static event GoalEvent OnGoal;
 
 	/// <summary>

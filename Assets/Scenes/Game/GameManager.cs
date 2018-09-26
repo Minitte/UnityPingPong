@@ -21,14 +21,29 @@ public class GameManager : MonoBehaviour {
 	/// </summary>
 	public PlayerInfo[] PlayerList;
 
+	/// <summary>
+	/// Ball prefab
+	/// </summary>
 	public GameObject BallPrefab;
 
+	/// <summary>
+	/// Text for displaying the winner
+	/// </summary>
 	public Text WinText;
 
+	/// <summary>
+	/// Player score text displays
+	/// </summary>
 	public PlayerScoreText[] PlayerScoreTexts;
 
+	/// <summary>
+	/// Score for each player by index
+	/// </summary>
 	public int[] Scores = new int[2];
 
+	/// <summary>
+	/// Win flag
+	/// </summary>
 	private bool _win;
 
 	/// <summary>
@@ -87,6 +102,10 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Spawns a ball on goal
+	/// </summary>
+	/// <param name="scoringTeam"></param>
 	private void SpawnBallOnGoal(int scoringTeam)
 	{
 		Scores[scoringTeam]++;
@@ -115,6 +134,9 @@ public class GameManager : MonoBehaviour {
 		EventMngr.BroadcastBallSpawnEvent(ballGO.GetComponent<PingPongBall>());
 	}
 
+	/// <summary>
+	/// Resets score and spawns a new ball
+	/// </summary>
 	public void RestartGame()
 	{
 		Scores[0] = 0;

@@ -7,6 +7,9 @@ public class GameSettings
         CLASSIC
     }
 
+    /// <summary>
+    /// Game mode setting
+    /// </summary>
     public static GameMode Mode = GameMode.CLASSIC;
 
     private GameSettings() {}
