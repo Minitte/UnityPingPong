@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour {
 		if (Scores[scoringTeam] > 6)
 		{
 			_win = true;
-			WinText.text = "Player " + (scoringTeam + 1) + " wins!";
+			WinText.text = "Player " + (scoringTeam + 1) + " wins!\nEnter to restart";
 			WinText.gameObject.SetActive(true);
 		}
 		else
